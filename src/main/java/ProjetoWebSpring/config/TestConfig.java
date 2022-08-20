@@ -5,7 +5,7 @@ package ProjetoWebSpring.config;
 //@Configuration diz que essa classe vai ser uma classe de configuracao
 //@Profile("perfil") diz qual perfil voce vai querer chamar para a configuracao
 //Essa classe Vai Servir para Popular o Banco de Dados, Enviar as informacoes
-//@Autowired é para associar uma estancia do UsuarioRepository dentro do TestConfig - Como Se Fosse um Contrutor puxando os objetos
+//@Autowired é para associar uma estancia do UsuarioRepository dentro do TestConfig - Como Se Fosse um Contrutor puxando os objetos ou um Injection
 //Com o implements CommandLineRunner -> é uma forma de essa classe ser iniciada junto com o programa! Alguns Jeitos do Spring
 //Meu Objeto UsuarioRepository é quem acessa os dados! com ele vou salvar os usuarios!
 
