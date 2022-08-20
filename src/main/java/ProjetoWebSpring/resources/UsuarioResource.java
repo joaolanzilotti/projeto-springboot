@@ -3,7 +3,7 @@ package projetoWebSpring.resources;
 
 //Resources se comunicam com a web com as entidades- Bean
 
-import projetoWebSpring.entities.User;
+import projetoWebSpring.entities.Usuario;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 //Retornei um ResponseEntity.ok para retornar um sucesso no http! e o .body para retornar o corpo da resposta! no meu caso é o usuario (u)
 @RestController
 @RequestMapping(value = "/users")
-public class UserResource {
+public class UsuarioResource {
     
     @GetMapping
-    public ResponseEntity<User> buscarTodos(){
-        User u = new User(1L, "Joao", "algamer@hotmail.com", "12996387061", "12345");
+    public ResponseEntity<Usuario> buscarTodos(){
+        Usuario u = new Usuario(1L, "Joao", "algamer@hotmail.com", "12996387061", "12345");
         return ResponseEntity.ok().body(u);
     }
     

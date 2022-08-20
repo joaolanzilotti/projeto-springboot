@@ -6,20 +6,27 @@ package projetoWebSpring.entities;
 
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-public class User implements Serializable{
+@Entity
+public class Usuario implements Serializable{
     private static final long serialVersionUID = 1L;
     
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
     private String email;
     private String phone;
     private String password;
     
-    public User(){
+    public Usuario(){
     }
 
-    public User(Long id, String nome, String email, String phone, String password) {
+    public Usuario(Long id, String nome, String email, String phone, String password) {
         super();
         this.id = id;
         this.nome = nome;
@@ -85,7 +92,7 @@ public class User implements Serializable{
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final User other = (User) obj;
+        final Usuario other = (Usuario) obj;
         return Objects.equals(this.id, other.id);
     }
     

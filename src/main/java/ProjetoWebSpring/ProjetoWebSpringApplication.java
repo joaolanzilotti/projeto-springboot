@@ -1,6 +1,6 @@
 package ProjetoWebSpring;
 
-import projetoWebSpring.entities.User;
+import projetoWebSpring.entities.Usuario;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.ResponseEntity;
