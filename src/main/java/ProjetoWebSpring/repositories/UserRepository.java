@@ -11,7 +11,7 @@ import projetoWebSpring.entities.User;
 //No caso do UsuarioRepository eu nao preciso espeficar que ele é um componente Spring com o @Repository
 //Pois quando eu usei extends JpaRepository , ele ja reconheceu que ele é um componente Spring
 
-public interface UsuarioRepository extends JpaRepository<User, Long>{
+public interface UserRepository extends JpaRepository<User, Long>{
 
     
     

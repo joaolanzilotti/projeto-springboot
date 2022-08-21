@@ -1,6 +1,7 @@
 
 package ProjetoWebSpring.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
@@ -22,6 +23,11 @@ public class Order implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    
+    //@JsonFormat -> Formata o elemento escolhido no tipo requerido, eu escolhi em formato String , ano,mes,dia:horas,minutos,segundos - o timezone é um horario universal!
+    //O tipo Instant é o substituto do Date!
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant moment;
     
     //Mapenando Muitos para Um JPA

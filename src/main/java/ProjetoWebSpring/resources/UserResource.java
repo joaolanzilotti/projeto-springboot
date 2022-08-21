@@ -3,7 +3,7 @@ package projetoWebSpring.resources;
 
 //Resources se comunicam com a web com as entidades- Bean
 
-import ProjetoWebSpring.services.UsuarioService;
+import ProjetoWebSpring.services.UserService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import projetoWebSpring.entities.User;
@@ -20,12 +20,12 @@ import org.springframework.web.bind.annotation.RestController;
 //Retornei um ResponseEntity.ok para retornar um sucesso no http! e o .body para retornar o corpo da resposta! no meu caso é o usuario (u)
 @RestController
 @RequestMapping(value = "/users")
-public class UsuarioResource {
+public class UserResource {
     
     //O UsuarioResource depende do UsuarioService
     //Injetando as dependencias do UsuarioService
     @Autowired
-    private UsuarioService service;
+    private UserService service;
     
     @GetMapping
     public ResponseEntity<List<User>> buscarTodos(){

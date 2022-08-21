@@ -5,6 +5,7 @@ package projetoWebSpring.entities;
 //isso é para que os objetos possam ser trafegados na rede , gravados em arquivos e etc...
 
 import ProjetoWebSpring.entities.Order;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +33,10 @@ public class User implements Serializable{
     
     //@OneToMany(mappedBy = "client") -Tem que Colocar o Atributo la da minha outra classe que está sendo mapeada! 
     //O Muitos para Um La da minha Classe Pedido , está sendo Mapeado ''mappedBy"" por "client"
+    //@JsonIgnore -> o meu mapeamento tem uma mào dupla, ele chama o cliente e chama um pedido e o pedido chama o cliente novamente, assim fazendo um loop
+    //para corrigir isso , usaremos o jsonignore
+    //Usar o @JsonIgnore somente nos mapeamentos OneToMany - Nunca usar no ManyToOne, vai dar erro!
+    @JsonIgnore
     @OneToMany(mappedBy = "client")
     private List<Order> orders = new ArrayList<>();
 
