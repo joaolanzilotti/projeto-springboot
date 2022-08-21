@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import projetoWebSpring.entities.Usuario;
+import projetoWebSpring.entities.User;
 
 
 @Configuration
@@ -29,8 +29,8 @@ public class TestConfig implements CommandLineRunner{
     @Override
     public void run(String... args) throws Exception {
         
-        Usuario u1 = new Usuario(null, "João Pedro", "joaopedro@gmail.com", "12996387061", "123456");
-        Usuario u2 = new Usuario(null, "Ana Catarina", "anacatarina@gmail.com", "12996269012", "123456");
+        User u1 = new User(null, "João Pedro", "joaopedro@gmail.com", "12996387061", "123456");
+        User u2 = new User(null, "Ana Catarina", "anacatarina@gmail.com", "12996269012", "123456");
         
         //Como esse é meu objeto que acessa os dados, tipo um EntityManager
         //Chamei ele e coloquei meus 2 usuarios dentro de uma lista para salvar os dois de uma vez só!

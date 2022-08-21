@@ -6,7 +6,7 @@ package projetoWebSpring.resources;
 import ProjetoWebSpring.services.UsuarioService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import projetoWebSpring.entities.Usuario;
+import projetoWebSpring.entities.User;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,15 +28,15 @@ public class UsuarioResource {
     private UsuarioService service;
     
     @GetMapping
-    public ResponseEntity<List<Usuario>> buscarTodos(){
-         List<Usuario> list = service.buscarTodos();
+    public ResponseEntity<List<User>> buscarTodos(){
+         List<User> list = service.buscarTodos();
         return ResponseEntity.ok().body(list);
     }
     
     //@PathVariable -> é para o Spring Aceitar o Parametro que esta sendo requisitado pelo @GetMapping
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Usuario> buscarPorId(@PathVariable Long id){
-    Usuario obj = service.buscarPorId(id);
+    public ResponseEntity<User> buscarPorId(@PathVariable Long id){
+    User obj = service.buscarPorId(id);
     return ResponseEntity.ok().body(obj);
     }
     

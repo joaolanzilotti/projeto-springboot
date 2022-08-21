@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import projetoWebSpring.entities.Usuario;
+import projetoWebSpring.entities.User;
 
 //@Component -> é utilizado para registrar a classe como componente do Spring
 //@Service -> é um termo mais especifico para registrar no Spring , nesse caso é um service!
@@ -21,7 +21,7 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository repository;
     
-    public List<Usuario> buscarTodos(){
+    public List<User> buscarTodos(){
     
         return repository.findAll();
         
@@ -29,8 +29,8 @@ public class UsuarioService {
     
     //.findById -> é para buscar algum elemento por id!
     //Optinal -> retorna um objeto escolhido no meu caso <Usuario> Minha Entidade
-    public Usuario buscarPorId(Long id){
-        Optional<Usuario> obj = repository.findById(id);
+    public User buscarPorId(Long id){
+        Optional<User> obj = repository.findById(id);
         return obj.get();
     }
     

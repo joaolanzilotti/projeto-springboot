@@ -1,0 +1,7 @@
+ProjetoWebSpring\entities\Order.class
+ProjetoWebSpring\services\UsuarioService.class
+ProjetoWebSpring\resources\UsuarioResource.class
+ProjetoWebSpring\config\TestConfig.class
+ProjetoWebSpring\repositories\UsuarioRepository.class
+ProjetoWebSpring\entities\User.class
+ProjetoWebSpring\ProjetoWebSpringApplication.class
