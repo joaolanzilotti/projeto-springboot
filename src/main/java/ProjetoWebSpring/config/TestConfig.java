@@ -8,6 +8,7 @@ package ProjetoWebSpring.config;
 //Com o implements CommandLineRunner -> é uma forma de essa classe ser iniciada junto com o programa! Alguns Jeitos do Spring
 //Meu Objeto UsuarioRepository é quem acessa os dados! com ele vou salvar os usuarios!
 import ProjetoWebSpring.entities.Order;
+import ProjetoWebSpring.entities.enums.OrderStatus;
 import ProjetoWebSpring.repositories.OrderRepository;
 import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,9 +39,9 @@ public class TestConfig implements CommandLineRunner {
 
         //Como os Dois estao Relacionados , Chamo o obj User também!
         //Estou Chamando meu obj Order e definindo seu atributos, id nulo, Instant.parse(Formato Escolhido), User1;
-        Order o1 = new Order(null, Instant.parse("2019-06-20T19:53:07Z"), u1);
-        Order o2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"), u2);
-        Order o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), u1);
+        Order o1 = new Order(null, Instant.parse("2019-06-20T19:53:07Z"),OrderStatus.PAID, u1);
+        Order o2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"),OrderStatus.DELIVERED, u2);
+        Order o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"),OrderStatus.SHIPPED ,u1);
 
         //Como esse é meu objeto que acessa os dados, tipo um EntityManager
         //Chamei ele e coloquei meus 2 usuarios dentro de uma lista para salvar os dois de uma vez só!

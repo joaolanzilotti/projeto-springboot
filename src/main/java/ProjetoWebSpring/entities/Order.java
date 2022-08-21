@@ -1,6 +1,7 @@
 
 package ProjetoWebSpring.entities;
 
+import ProjetoWebSpring.entities.enums.OrderStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import java.io.Serializable;
 import java.time.Instant;
@@ -30,6 +31,9 @@ public class Order implements Serializable{
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant moment;
     
+    //Aqui ele recebe um Inteiro Internamente, mas ele recebe um OrderStatus
+    private Integer orderStatus;
+    
     //Mapenando Muitos para Um JPA
     //Estou associando a Classe Usuario que é uma Entidade, aqui!
     //@JoinColumn(name = "cliente_id") ->Defifindo minha Entrada na tabela cliente e Definindo o nome da minha chave estrangeira
@@ -40,11 +44,22 @@ public class Order implements Serializable{
     public Order() {
     }     
 
-    public Order(Long id, Instant moment, User Client) {
+    public Order(Long id, Instant moment,OrderStatus orderStatus, User Client) {
         this.id = id;
         this.moment = moment;
+        setOrderStatus(orderStatus);
         this.client = Client;
     }
+
+    public OrderStatus getOrderStatus() {
+        return OrderStatus.valueOf(orderStatus);
+    }
+
+    public void setOrderStatus(OrderStatus orderStatus) {
+        if(orderStatus != null){
+        this.orderStatus = orderStatus.getCode();
+        }
+    }  
 
     public Long getId() {
         return id;
