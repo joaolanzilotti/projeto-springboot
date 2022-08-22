@@ -14,8 +14,9 @@ public class OrderItem implements Serializable{
     private static final Long serialVersionUID = 1L;
     
     //Como Eu Especifiquei meu Id da forma Embedded na classe auxiliar aqui também precisa ser!
+    //Sempre que for criar classes auxiliares como essa , você tem que estanciar a classe como novo objeto para ela n vir com valor nulo!
     @EmbeddedId
-    private OrderItemPK id;
+    private OrderItemPK id = new OrderItemPK();
     
     private Integer quantity;
     

@@ -14,7 +14,6 @@ import javax.persistence.ManyToOne;
 //@Embeddable -> Está é uma Classe de chave Composta, para isso vamos substuir o @Id por @Embeddable
 //Classe Auxiliar!
 
-//Sempre que for criar classes auxiliares como essa , você tem que estanciar a classe como novo objeto para ela n vir com valor nulo!
 @Embeddable
 public class OrderItemPK implements Serializable{
     private static final Long serialVersionUID = 1L;
