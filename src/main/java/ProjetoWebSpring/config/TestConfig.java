@@ -9,9 +9,11 @@ package ProjetoWebSpring.config;
 //Meu Objeto UsuarioRepository é quem acessa os dados! com ele vou salvar os usuarios!
 import ProjetoWebSpring.entities.Category;
 import ProjetoWebSpring.entities.Order;
+import ProjetoWebSpring.entities.OrderItem;
 import ProjetoWebSpring.entities.Product;
 import ProjetoWebSpring.entities.enums.OrderStatus;
 import ProjetoWebSpring.repositories.CategoryRepository;
+import ProjetoWebSpring.repositories.OrderItemRepository;
 import ProjetoWebSpring.repositories.OrderRepository;
 import ProjetoWebSpring.repositories.ProductRepository;
 import java.util.Arrays;
@@ -38,6 +40,9 @@ public class TestConfig implements CommandLineRunner {
 
     @Autowired
     private ProductRepository productRepository;
+    
+    @Autowired
+    private OrderItemRepository orderItemRepository;
 
     //Isso aqui é um metodo obrigatorio após eu iniciar essa classe com o CommandLineRunner
     @Override
@@ -72,6 +77,11 @@ public class TestConfig implements CommandLineRunner {
         Order o2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"), OrderStatus.DELIVERED, u2);
         Order o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), OrderStatus.SHIPPED, u1);
 
+        OrderItem oi1 = new OrderItem(o1, p1, 2, p1.getPrice());
+        OrderItem oi2 = new OrderItem(o1, p3, 1, p3.getPrice());
+        OrderItem oi3 = new OrderItem(o2, p3, 2, p3.getPrice());
+        OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice());
+
         //Como esse é meu objeto que acessa os dados, tipo um EntityManager
         //Chamei ele e coloquei meus 2 usuarios dentro de uma lista para salvar os dois de uma vez só!
         usuarioRepository.saveAll(Arrays.asList(u1, u2));
@@ -81,6 +91,8 @@ public class TestConfig implements CommandLineRunner {
         categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
 
         productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
+        
+        orderItemRepository.saveAll(Arrays.asList(oi1,oi2,oi3,oi4));
     }
 
 }
