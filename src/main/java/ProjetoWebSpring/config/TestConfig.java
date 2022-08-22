@@ -9,9 +9,11 @@ package ProjetoWebSpring.config;
 //Meu Objeto UsuarioRepository é quem acessa os dados! com ele vou salvar os usuarios!
 import ProjetoWebSpring.entities.Category;
 import ProjetoWebSpring.entities.Order;
+import ProjetoWebSpring.entities.Product;
 import ProjetoWebSpring.entities.enums.OrderStatus;
 import ProjetoWebSpring.repositories.CategoryRepository;
 import ProjetoWebSpring.repositories.OrderRepository;
+import ProjetoWebSpring.repositories.ProductRepository;
 import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -30,14 +32,17 @@ public class TestConfig implements CommandLineRunner {
 
     @Autowired
     private OrderRepository orderRepository;
-    
+
     @Autowired
     private CategoryRepository categoryRepository;
+
+    @Autowired
+    private ProductRepository productRepository;
 
     //Isso aqui é um metodo obrigatorio após eu iniciar essa classe com o CommandLineRunner
     @Override
     public void run(String... args) throws Exception {
-        
+
         Category cat1 = new Category(null, "Eletronics");
         Category cat2 = new Category(null, "Books");
         Category cat3 = new Category(null, "Computers");
@@ -48,18 +53,25 @@ public class TestConfig implements CommandLineRunner {
 
         //Como os Dois estao Relacionados , Chamo o obj User também!
         //Estou Chamando meu obj Order e definindo seu atributos, id nulo, Instant.parse(Formato Escolhido), User1;
-        Order o1 = new Order(null, Instant.parse("2019-06-20T19:53:07Z"),OrderStatus.PAID, u1);
-        Order o2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"),OrderStatus.DELIVERED, u2);
-        Order o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"),OrderStatus.SHIPPED ,u1);
-        
+        Order o1 = new Order(null, Instant.parse("2019-06-20T19:53:07Z"), OrderStatus.PAID, u1);
+        Order o2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"), OrderStatus.DELIVERED, u2);
+        Order o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), OrderStatus.SHIPPED, u1);
+
+        Product p1 = new Product(null, "The Lord of the Rings", "Uma Rig.", 90.5, "");
+        Product p2 = new Product(null, "Smart TV", "Samsung SmartTv 50 4K.", 2190.0, "");
+        Product p3 = new Product(null, "Macbook Pro", "MacBook Pro 1Tb.", 1250.0, "");
+        Product p4 = new Product(null, "PC Gamer", "Rtx 3090Ti 24Gb.", 1200.0, "");
+        Product p5 = new Product(null, "Rails for Dummies", "Rails Coloridos.", 100.99, "");
 
         //Como esse é meu objeto que acessa os dados, tipo um EntityManager
         //Chamei ele e coloquei meus 2 usuarios dentro de uma lista para salvar os dois de uma vez só!
-         usuarioRepository.saveAll(Arrays.asList(u1, u2));
+        usuarioRepository.saveAll(Arrays.asList(u1, u2));
 
-         orderRepository.saveAll(Arrays.asList(o1,o2,o3));
+        orderRepository.saveAll(Arrays.asList(o1, o2, o3));
+
+        categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
         
-         categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
+        productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
     }
 
 }
