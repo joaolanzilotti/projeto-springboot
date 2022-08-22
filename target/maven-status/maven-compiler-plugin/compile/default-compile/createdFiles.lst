@@ -1,7 +1,11 @@
 ProjetoWebSpring\entities\Order.class
-ProjetoWebSpring\services\UsuarioService.class
-ProjetoWebSpring\resources\UsuarioResource.class
-ProjetoWebSpring\config\TestConfig.class
-ProjetoWebSpring\repositories\UsuarioRepository.class
+ProjetoWebSpring\repositories\UserRepository.class
+ProjetoWebSpring\resources\OrderResource.class
 ProjetoWebSpring\entities\User.class
+ProjetoWebSpring\entities\enums\OrderStatus.class
+ProjetoWebSpring\services\UserService.class
+ProjetoWebSpring\resources\UserResource.class
+ProjetoWebSpring\config\TestConfig.class
+ProjetoWebSpring\repositories\OrderRepository.class
+ProjetoWebSpring\services\OrderService.class
 ProjetoWebSpring\ProjetoWebSpringApplication.class

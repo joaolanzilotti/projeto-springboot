@@ -3,8 +3,8 @@ package ProjetoWebSpring.resources;
 
 //Resources se comunicam com a web com as entidades- Bean
 
-import ProjetoWebSpring.entities.Order;
-import ProjetoWebSpring.services.OrderService;
+import ProjetoWebSpring.entities.Category;
+import ProjetoWebSpring.services.CategoryService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,24 +19,24 @@ import org.springframework.web.bind.annotation.RestController;
 //ResponseEntity<User> -> é um tipo especifico do Spring para Retornar Respostas!
 //Retornei um ResponseEntity.ok para retornar um sucesso no http! e o .body para retornar o corpo da resposta! no meu caso é o usuario (u)
 @RestController
-@RequestMapping(value = "/orders")
-public class OrderResource {
+@RequestMapping(value = "/categories")
+public class CategoryResource {
     
     //O UsuarioResource depende do UsuarioService
     //Injetando as dependencias do UsuarioService
     @Autowired
-    private OrderService service;
+    private CategoryService service;
     
     @GetMapping
-    public ResponseEntity<List<Order>> buscarTodos(){
-         List<Order> list = service.buscarTodos();
+    public ResponseEntity<List<Category>> buscarTodos(){
+         List<Category> list = service.buscarTodos();
         return ResponseEntity.ok().body(list);
     }
     
     //@PathVariable -> é para o Spring Aceitar o Parametro que esta sendo requisitado pelo @GetMapping
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Order> buscarPorId(@PathVariable Long id){
-    Order obj = service.buscarPorId(id);
+    public ResponseEntity<Category> buscarPorId(@PathVariable Long id){
+    Category obj = service.buscarPorId(id);
     return ResponseEntity.ok().body(obj);
     }
     
