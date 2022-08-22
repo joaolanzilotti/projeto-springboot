@@ -1,6 +1,6 @@
-
 package ProjetoWebSpring.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
@@ -9,28 +9,29 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
 @Table(name = "tb_category")
-public class Category implements Serializable{
+public class Category implements Serializable {
+
     private static final Long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
-    
+
     //Dentro da minha Classe Categoria, agora tem um Conjunto de Produtos , por causa do 'Set'
-    //@ManyToOne
-    @Transient
+    //Usei o ManyToMany com mappedBy e tem que especificar o nome utilizado no meu caso com o Set
+    @JsonIgnore
+    @ManyToMany(mappedBy = "categories")
     private Set<Product> products = new HashSet<>();
 
     public Set<Product> getProducts() {
         return products;
-    } 
+    }
 
     public Category() {
     }
@@ -80,7 +81,5 @@ public class Category implements Serializable{
         final Category other = (Category) obj;
         return Objects.equals(this.id, other.id);
     }
-    
-    
-    
+
 }

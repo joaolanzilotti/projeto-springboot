@@ -1,7 +1,5 @@
-
 package ProjetoWebSpring.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
@@ -10,14 +8,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
+
 @Entity
 @Table(name = "tb_product")
-public class Product implements Serializable{
+public class Product implements Serializable {
+
     private static final Long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
@@ -25,16 +26,24 @@ public class Product implements Serializable{
     private String description;
     private Double price;
     private String imgUrl;
-    
+
     //O Set representa um Conjunto!
     //Com o Atributo Set , ele não vai permitir um produto ter a mesma categoria novamente! o produto não vai uma mesma categoria mais de uma vez!
     //Com o HashSet -> Estou garantindo que minha coleção não podera vir nulla! e o Set é uma Interface , Assim nao podendo estanciar! , por isso usei HashSet, Como List usa o ArrayList!
     //Nao se coloca colecao em construtor!
     //@Transient -> Impede o JPA de Interpretar!
-//    @JsonIgnore
-//    @OneToMany(mappedBy = "products")
-    @Transient
+    //Relacao Muitos para Muitos
+    //@JoinTable -> Para Associar sua tabela dentro de outra tabela , utilizada quando precisar do ManyToMany
+    //Definir o nome da Tabela Associada , usar JoinColumns , e especificar o nome da coluna do id!
+    //Usei o InverseJoinColumns porque uma tabela vai se alinhar com outra tabela , entao vou precisar adicionar Id do product e fazer o inverse e usar o id de category
+    
+    @ManyToMany
+    @JoinTable(name = "tb_product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>();
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
 
     public Product() {
     }
@@ -111,8 +120,5 @@ public class Product implements Serializable{
         final Product other = (Product) obj;
         return Objects.equals(this.Id, other.Id);
     }
-    
-    
-   
-    
+
 }

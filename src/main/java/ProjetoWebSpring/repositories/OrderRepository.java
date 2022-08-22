@@ -11,6 +11,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 //Pois quando eu usei extends JpaRepository , ele ja reconheceu que ele é um componente Spring
 
 public interface OrderRepository extends JpaRepository<Order, Long>{
+    
 
     
     
