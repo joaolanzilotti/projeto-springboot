@@ -2,6 +2,7 @@
 package ProjetoWebSpring.entities;
 
 import ProjetoWebSpring.entities.pk.OrderItemPK;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.EmbeddedId;
@@ -36,6 +37,7 @@ public class OrderItem implements Serializable{
     }
     
     //Criei um Get do meu Order que retorna o meu Id la de cima!
+    @JsonIgnore
     public Order getOrder(){
             return id.getOrder();
         }
