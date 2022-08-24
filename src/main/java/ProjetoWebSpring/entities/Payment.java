@@ -1,6 +1,7 @@
 
 package ProjetoWebSpring.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
@@ -23,6 +24,7 @@ public class Payment implements Serializable{
     private Instant moment;
     
     //Um pedido tem um pagamento, por isso devo estanciar a classe aqui e mapear com OneToOne
+    @JsonIgnore
     @OneToOne
     @MapsId
     private Order order;

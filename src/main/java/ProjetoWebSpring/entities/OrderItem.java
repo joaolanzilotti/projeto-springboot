@@ -36,6 +36,11 @@ public class OrderItem implements Serializable{
         this.price = price;
     }
     
+    //Coloquei o  nome do metodo como GetSubTotal , para ele aparecer no Json!
+    public Double getSubTotal(){
+        return price * quantity;
+    }
+    
     //Criei um Get do meu Order que retorna o meu Id la de cima!
     @JsonIgnore
     public Order getOrder(){
