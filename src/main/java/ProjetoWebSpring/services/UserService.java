@@ -8,6 +8,7 @@ import projetoWebSpring.entities.User;
 import ProjetoWebSpring.repositories.UserRepository;
 import ProjetoWebSpring.services.exceptions.DataBaseException;
 import ProjetoWebSpring.services.exceptions.ResourceNotFoundException;
+import javax.persistence.EntityNotFoundException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 
@@ -65,9 +66,13 @@ public class UserService {
     //repository.getOne(id); -> Eu Busco pelo ID e o User Entity já está recebendo essa busca!
     //User entity -> eu estou pegando todos meus atributos da classe User , Metodos, Construtores e etc...
     public User update(Long id, User obj) {
+        try{
         User entity = repository.getOne(id);
         updateData(entity, obj);
         return repository.save(entity);
+        }catch(EntityNotFoundException e){
+            throw new ResourceNotFoundException(id);
+        }
     }
 
     private void updateData(User entity, User obj) {
