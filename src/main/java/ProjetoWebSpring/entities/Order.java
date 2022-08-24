@@ -8,6 +8,7 @@ import java.time.Instant;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import projetoWebSpring.entities.User;
 
@@ -44,8 +46,14 @@ public class Order implements Serializable{
     @JoinColumn(name = "client_id")
     private User client;
     
+    //Um Pagamento tem um Pedido e um pedido tem uma pagamento, entao @OneToOne
+    //Quando for mapear @OneToOne Tem Essa Diferença, tem que colocar o cascade
+    //O cascade é quando se for utilizar um mesmo id no mapeamento é obrigatório usar o cascade! ex: o pagamento vai receber o mesmo ID de pedido!
+    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
+    private Payment payment;
+    
     //Estanciando minha coleção 
-    //Eu COloquei mappedBy = "id.order" pois na minha classe auxiliar eu setei não tem o Id Normalmente especificado! entao nesse caso tenho que especificar com id.order - > o ID vai ser da classe Order
+    //Eu Coloquei mappedBy = "id.order" pois na minha classe auxiliar eu setei não tem o Id Normalmente especificado! entao nesse caso tenho que especificar com id.order - > o ID vai ser da classe Order
     @OneToMany(mappedBy = "id.order")
     private Set<OrderItem> items = new HashSet<>();
     
@@ -95,6 +103,14 @@ public class Order implements Serializable{
 
     public void setClient(User Client) {
         this.client = Client;
+    }
+
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
     }
 
     @Override

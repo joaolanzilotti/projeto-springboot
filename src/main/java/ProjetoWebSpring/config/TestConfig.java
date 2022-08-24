@@ -10,6 +10,7 @@ package ProjetoWebSpring.config;
 import ProjetoWebSpring.entities.Category;
 import ProjetoWebSpring.entities.Order;
 import ProjetoWebSpring.entities.OrderItem;
+import ProjetoWebSpring.entities.Payment;
 import ProjetoWebSpring.entities.Product;
 import ProjetoWebSpring.entities.enums.OrderStatus;
 import ProjetoWebSpring.repositories.CategoryRepository;
@@ -81,7 +82,10 @@ public class TestConfig implements CommandLineRunner {
         OrderItem oi2 = new OrderItem(o1, p3, 1, p3.getPrice());
         OrderItem oi3 = new OrderItem(o2, p3, 2, p3.getPrice());
         OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice());
-
+        
+        Payment pay1 = new Payment(null, Instant.parse("2022-06-20T21:53:07Z"), o1);
+        o1.setPayment(pay1);
+       
         //Como esse é meu objeto que acessa os dados, tipo um EntityManager
         //Chamei ele e coloquei meus 2 usuarios dentro de uma lista para salvar os dois de uma vez só!
         usuarioRepository.saveAll(Arrays.asList(u1, u2));
