@@ -34,8 +34,13 @@ public class UserService {
         return obj.get();
     }
     
+    //Inserindo Usuario, precisa de um resource!
     public User insert(User obj){
         return repository.save(obj);
+    }
+    
+    public void delete(Long id){
+        repository.deleteById(id);
     }
     
 }
