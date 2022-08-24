@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import projetoWebSpring.entities.User;
 import ProjetoWebSpring.repositories.UserRepository;
+import ProjetoWebSpring.services.exceptions.ResourceNotFoundException;
 
 //@Component -> é utilizado para registrar a classe como componente do Spring
 //@Service -> é um termo mais especifico para registrar no Spring , nesse caso é um service!
@@ -29,9 +30,17 @@ public class UserService {
     
     //.findById -> é para buscar algum elemento por id!
     //Optinal -> retorna um objeto escolhido no meu caso <Usuario> Minha Entidade
+//    public User buscarPorId(Long id){
+//        Optional<User> obj = repository.findById(id);
+//        return obj.get();
+//    }
+    
+    //.findById -> é para buscar algum elemento por id!
+    //Optinal -> retorna um objeto escolhido no meu caso <Usuario> Minha Entidade
+    //Usei o .orElseThow ele vai tentar buscar o ID se o valor não exister, ele executa o meu erro personalizado!
     public User buscarPorId(Long id){
         Optional<User> obj = repository.findById(id);
-        return obj.get();
+        return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }
     
     //Inserindo Usuario, precisa de um resource!
