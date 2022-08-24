@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -59,13 +60,23 @@ public class UserResource {
         return ResponseEntity.created(uri).body(obj);
     }
     
-    //Para deletar Usar @DeleteMapping
+    //Para deletar Usar @DeleteMapping é um método HTTP
     //@pathVariable -> Nesse Caso é para o valor Long id Ser reconhecido como Variavel da minha URL usar o @pathVariable
     //.noContent é porque não vai ter conteudo!
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id){
             service.delete(id);
             return ResponseEntity.noContent().build();
+    }
+    
+    //Usar o @PutMapping para Atualizar dados é um metodo HTTP
+    //Meu Metodo está recebendo um User atualizado por conta do meu ResponseEntity<User>
+    //@PathVariable para reconhecer meu valor como objeto!
+    //@RequestBody -> Converte o valor de Json para objeto e reconhece como objeto!
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User obj){
+            obj = service.update(id, obj);
+            return ResponseEntity.ok().body(obj);
     }
     
 }

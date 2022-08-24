@@ -39,8 +39,24 @@ public class UserService {
         return repository.save(obj);
     }
     
+    //Deletando Usuario por ID!
     public void delete(Long id){
         repository.deleteById(id);
+    }
+    
+    //O .getOne é mais eficiente que o .findById, para fazer updates de valores!, no meu caso dados do Usuario!
+    //repository.getOne(id); -> Eu Busco pelo ID e o User Entity já está recebendo essa busca!
+    //User entity -> eu estou pegando todos meus atributos da classe User , Metodos, Construtores e etc...
+    public User update(Long id, User obj){
+        User entity = repository.getOne(id);
+        updateData(entity, obj);
+        return repository.save(entity);
+    }
+
+    private void updateData(User entity, User obj) {
+       entity.setName(obj.getName());
+       entity.setEmail(obj.getEmail());
+       entity.setPhone(obj.getPhone());
     }
     
 }
