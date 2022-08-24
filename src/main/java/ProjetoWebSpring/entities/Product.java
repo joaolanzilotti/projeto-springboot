@@ -1,5 +1,6 @@
 package ProjetoWebSpring.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
@@ -100,6 +101,7 @@ public class Product implements Serializable {
         this.imgUrl = imgUrl;
     }
     
+    @JsonIgnore
     public Set<Order> getOrders(){
         Set<Order> set = new HashSet<>();
         for (OrderItem x : items){

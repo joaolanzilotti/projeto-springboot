@@ -48,7 +48,6 @@ public class OrderItem implements Serializable{
     }
 
     //Criei um Get do meu Order que retorna o meu Id la de cima!
-    @JsonIgnore
     public Product getProduct(){
             return id.getProduct();
         }
