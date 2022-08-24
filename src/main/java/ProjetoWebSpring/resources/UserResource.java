@@ -4,20 +4,26 @@ package projetoWebSpring.resources;
 //Resources se comunicam com a web com as entidades- Bean
 
 import ProjetoWebSpring.services.UserService;
+import java.net.URI;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import projetoWebSpring.entities.User;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 //@RestController -> Usar para dizer que ,Essa classe é um recurso web que é implementado por um controlador Rest
 //@RequestMapping -> Usar Para dar um Nome para meu Recurso!
 //@GetMapping -> Para Dizer que esse Metodo responde a uma requisicao!
 //ResponseEntity<User> -> é um tipo especifico do Spring para Retornar Respostas!
 //Retornei um ResponseEntity.ok para retornar um sucesso no http! e o .body para retornar o corpo da resposta! no meu caso é o usuario (u)
+//@GetMapping-> Quando eu for buscar algum metodo microservice como o buscartodos ou buscarporid
+//@PostMapping-> é quando eu for precisar salvar ou setar algo,como salvar um usuario,  diferente do @GetMapping
 @RestController
 @RequestMapping(value = "/users")
 public class UserResource {
@@ -38,6 +44,16 @@ public class UserResource {
     public ResponseEntity<User> buscarPorId(@PathVariable Long id){
     User obj = service.buscarPorId(id);
     return ResponseEntity.ok().body(obj);
+    }
+    
+    //@RequestBody -> Meu User obj vai vir em formato Json e para dizer que esse User vai ser um Objeto , vamos utilizar o @RequestBody
+    //Converte o valor em Json para objeto, assim podendo salvar os dados!
+    //O URI eu criei um caminho que diz que foi criado , esse jeito é mais limpo de salvar! o caminho do recurso!
+    @PostMapping
+    public ResponseEntity<User> Insert(@RequestBody User obj){
+        obj = service.insert(obj);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+        return ResponseEntity.created(uri).body(obj);
     }
     
 }
